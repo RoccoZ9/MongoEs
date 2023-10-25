@@ -44,7 +44,7 @@ public class ContinentiControllers {
         double dist= distance / 6378.1;
         return contRepo.findLocation(lat, lng, dist);
     }
-    @GetMapping(value = "/getRegion")
+    @GetMapping(value = "/getRegion/{region}")
     public List<Conteggio> getRegionSum(String region){
         return contRepo.findRegion(region);
     };

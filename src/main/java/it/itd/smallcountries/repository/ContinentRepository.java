@@ -16,6 +16,8 @@ public interface ContinentRepository extends MongoRepository<Continenti, String>
     @Query(value = "{'latlng': {$geoWithin: { $centerSphere: [ [?0, ?1], ?2 ]}}}")
     public List<Continenti> findLocation(double lat, double lng, double distance);
 
-    @Aggregation(pipeline = {"{'$match': {'region': /?0/}}", "{'$group': {_id: $subregion, count: {sum: 1}}}","{$sort: -1}"})
+    @Aggregation(pipeline = { "{'$match': {'region': /?0/}}",
+            "{'$group': {_id: '$subregion', count: {$sum: 1}}}",
+            "{$sort: {count: -1}}"})
     public List<Conteggio> findRegion(String region);
 }
