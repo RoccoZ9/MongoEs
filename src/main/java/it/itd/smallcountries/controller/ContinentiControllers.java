@@ -3,6 +3,7 @@ package it.itd.smallcountries.controller;
 import it.itd.smallcountries.documents.Continenti;
 import it.itd.smallcountries.exceptions.ContinentNotFoundException;
 import it.itd.smallcountries.repository.ContinentRepository;
+import it.itd.smallcountries.util.Conteggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,4 +44,8 @@ public class ContinentiControllers {
         double dist= distance / 6378.1;
         return contRepo.findLocation(lat, lng, dist);
     }
+    @GetMapping(value = "/getRegion")
+    public List<Conteggio> getSum(){
+        return contRepo.findRegion();
+    };
 }
